@@ -3,14 +3,24 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Variables;
 
-public class WorldSpaceInteraction : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class WorldSpaceInteraction : MonoBehaviour, IPointerDownHandler
 {
+    public static WorldSpaceInteraction Instance;
     public Camera worldSpaceCamera;
     public RawImage uiRawImage;
     public LayerMask noteLayerToDetect;
     private int noteLayer;
-    private NoteDrag currentlyDraggingNote;
     private Vector3 initialTouchPosition;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+    void Destroy()
+    {
+        Instance = null;
+    }
 
     void Start()
     {
@@ -28,53 +38,46 @@ public class WorldSpaceInteraction : MonoBehaviour, IPointerDownHandler, IDragHa
 
             if (hit.collider != null)
             {
-                NoteBase note = hit.collider.GetComponent<NoteBase>();
-                if (note != null)
+                if (hit.collider.gameObject != null)
                 {
-                    if (note.noteType == NoteType.Tap)
-                    {
-                        note.Hit();
-                    }
-                    else if (note.noteType == NoteType.DragStraight || note.noteType == NoteType.DragCurve)
-                    {
-                        currentlyDraggingNote = note as NoteDrag;
-                        currentlyDraggingNote.StartDrag();
-                    }
+                    Debug.Log("Hit: " + hit.collider.name);
                 }
             }
         }
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void RefreshRenderTexture()
     {
-        if (currentlyDraggingNote != null)
+        if (worldSpaceCamera != null)
         {
-            //Debug.Log("Dragging");
-        }
-    }
+            RenderTexture currentRT = worldSpaceCamera.targetTexture;
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (currentlyDraggingNote != null)
-        {
-            currentlyDraggingNote.EndDrag();
-            currentlyDraggingNote = null;
+            if (currentRT == null)
+            {
+                currentRT = new RenderTexture(Screen.width, Screen.height, 24);
+                worldSpaceCamera.targetTexture = currentRT;
+            }
+
+            worldSpaceCamera.Render();
+
+            if (uiRawImage != null)
+            {
+                uiRawImage.texture = currentRT;
+            }
+
+            /*
+            if (worldSpaceCamera.targetTexture == currentRT && currentRT != originalRT)
+            {
+                worldSpaceCamera.targetTexture = originalRT;
+                currentRT.Release();
+                Destroy(currentRT);
+            }
+            */
         }
         else
         {
-            // Detect swipe to left or right
-            Vector3 delta = (Vector3)eventData.position - initialTouchPosition;
-            if (Mathf.Abs(delta.x) > 50f) // Threshold for swipe detection
-            {
-                if (delta.x > 0)
-                {
-                    Debug.Log("Swipe Right");
-                }
-                else
-                {
-                    Debug.Log("Swipe Left");
-                }
-            }
+            Debug.LogWarning("World Space Camera is not assigned.");
         }
     }
+
 }
