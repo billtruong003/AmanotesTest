@@ -11,8 +11,8 @@ TagManager:
   - Notes
   - Water
   - UI
-  - 
-  - 
+  - VFX
+  - UIWorldSpace
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: VFX
+    uniqueID: 3282171641
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

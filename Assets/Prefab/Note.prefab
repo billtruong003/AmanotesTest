@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 1586134247249366426}
   - component: {fileID: 3320024507344393175}
   - component: {fileID: 8318911853283522600}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 3849306254986384473}
   - component: {fileID: 72876630251262949}
   - component: {fileID: 6112837473817098836}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,8 +517,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3df51b6110d1d5144a070ae9d1a8f1bc, type: 2}
+  m_sharedMaterial: {fileID: -6117913002366188727, guid: 3df51b6110d1d5144a070ae9d1a8f1bc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -542,8 +542,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 5.48
+  m_fontSizeBase: 5.48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

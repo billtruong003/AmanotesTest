@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.billtruong003.sceneswitcher": {
+      "version": "https://github.com/billtruong003/SceneSwitcherToolUnity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e96d66ebddaa273fc799ba5bf7bbdbc3222498b3"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.2",
       "depth": 1,
